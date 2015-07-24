@@ -37,6 +37,7 @@ import org.apache.spark.streaming.util.WriteAheadLogUtils
  * @param ssc_ Streaming context that will execute this input stream
  * @tparam T Class type of the object of this stream
  */
+//ReceiverInputDStream获取网络数据流
 abstract class ReceiverInputDStream[T: ClassTag](@transient ssc_ : StreamingContext)
   extends InputDStream[T](ssc_) {
 
@@ -45,6 +46,7 @@ abstract class ReceiverInputDStream[T: ClassTag](@transient ssc_ : StreamingCont
    * to receive data. This method needs to defined by any specific implementation
    * of a ReceiverInputDStream.
    */
+  //获取读取器
   def getReceiver(): Receiver[T]
 
   // Nothing to start or stop as both taken care of by the ReceiverTracker.

@@ -35,7 +35,7 @@ class SocketInputDStream[T: ClassTag](
     @transient ssc_ : StreamingContext,
     host: String,
     port: Int,
-    bytesToObjects: InputStream => Iterator[T],
+    bytesToObjects: InputStream => Iterator[T],  //把输入流转换为可遍历的集合
     storageLevel: StorageLevel
   ) extends ReceiverInputDStream[T](ssc_) {
 

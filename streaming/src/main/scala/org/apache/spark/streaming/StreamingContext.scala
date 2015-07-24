@@ -323,12 +323,13 @@ class StreamingContext private[streaming] (
    *                      (default: StorageLevel.MEMORY_AND_DISK_SER_2)
    */
 
-  //返回一个ReceiverInputDStream，
+  //通过建立Socket连接，读取网络流数据，
   def socketTextStream(
       hostname: String,
       port: Int,
       storageLevel: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER_2
     ): ReceiverInputDStream[String] = withNamedScope("socket text stream") {
+    //调用socketStream
     socketStream[String](hostname, port, SocketReceiver.bytesToLines, storageLevel)
   }
 
@@ -348,6 +349,7 @@ class StreamingContext private[streaming] (
       converter: (InputStream) => Iterator[T],
       storageLevel: StorageLevel
     ): ReceiverInputDStream[T] = {
+    //直接创建SocketInputDStream，SocketInputDStream继承自ReceiverInputDStream
     new SocketInputDStream[T](this, hostname, port, converter, storageLevel)
   }
 
