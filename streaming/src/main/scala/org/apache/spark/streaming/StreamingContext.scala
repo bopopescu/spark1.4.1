@@ -322,6 +322,8 @@ class StreamingContext private[streaming] (
    * @param storageLevel  Storage level to use for storing the received objects
    *                      (default: StorageLevel.MEMORY_AND_DISK_SER_2)
    */
+
+  //返回一个ReceiverInputDStream，
   def socketTextStream(
       hostname: String,
       port: Int,
